@@ -1,0 +1,47 @@
+<table class="table table-hover">
+    <div *ngIf="CanEdit; then edit else display"></div>
+</table>
+
+<ng-template #display>
+    <thead>
+        <tr>
+            <td>Title</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let v of videos" (click)="onSelect(v)">
+            <td>{{ v.title }}</td>
+            <td>{{ v.desc }}</td>
+        </tr>
+    </tbody>
+</ng-template>
+
+<ng-template #edit>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Video Code</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let v of videos" (click)="onSelect(v)">
+            <td>
+                <input type="text" [(ngModel)]="v.id" />
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="v.title" />
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="v.desc" />
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="v.videoCode" />
+            </td>
+            <td><a (click)="Remove(v)">Remove</a></td>
+        </tr>
+    </tbody>
+</ng-template>
